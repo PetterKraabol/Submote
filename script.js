@@ -2,6 +2,7 @@ $(document).ready(function()
 {
 	//Emote object
 	var emotes = {};
+	
 
 	//Check if emotes are already stored locally
 	if (localStorage.getItem("emotes") === null)
@@ -47,22 +48,26 @@ $(document).ready(function()
 	 * @param  {element} ele  Message element
 	 * @param  {object} list List of emotes
 	 */
-
 	function convert(ele, list){
 		var msg = ele.html();
 		var split = msg.split(" ");
 		var regex;
+		var word;
 
 		for (var i = 0; i <= split.length; i++) {
-			if(list[split[i]] !== undefined && split[i].length >= 3)
+			word = split[i];
+
+			if(list[word] !== undefined
+				&& word[0] === word[0].toLowerCase())
 			{
-				regex = new RegExp('\\b'+split[i]+'\\b(?=[^"]*(?:"[^"]*"[^"]*)*$)', 'g');
-				msg = msg.replace(regex, generateEmoteImage(split[i], list[split[i]]));
+				regex = new RegExp('\\b'+word+'\\b(?=[^"]*(?:"[^"]*"[^"]*)*$)', 'g');
+				msg = msg.replace(regex, generateEmoteImage(word, list[word]));
 			}
 		}
 
 		ele.html(msg);
 	}
+
 
 	/**
 	 * Generate emote image HTML tag.
