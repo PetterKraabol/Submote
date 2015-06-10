@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "Twitch Subscriber Emotes",
+  "description": "This extension lets you use any subscriber emote on Twitch",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "http://twitch.tv/",
+    "http://code.jquery.com/",
+    "https://twitchemotes.com/",
+    "https://ajax.googleapis.com/"
+  ]
+}
