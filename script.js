@@ -1,3 +1,4 @@
+//Developed by Zarlach
 $(document).ready(function()
 {	
 	//Global vars
@@ -42,19 +43,36 @@ $(document).ready(function()
 	{
 		if ($(e.target).is('.chat-line'))
 		{
-			var message = $(this).find('.message').last();
-			var badges	= $(this).find('.badges').last();
-			var from	= $(this).find('.from').last().html();
+
+			var line 	= $(this).find('.chat-line').last();
+			var message = line.find('.message');
+			var badges	= line.find('.badges');
+			var from	= line.data('sender');
+
+			console.log(line.html());
+			console.log(message.html());
+			console.log('from:'+from);
+			console.log(badges.html());
 
 			if(from !== 'jtv')
 				convert(message, emotes);
 
-			/*Append turbo
-			if(from === 'Zarlach')
-				if(badges.firstChild)
-					$(badges).children('.badge').first().after('<div class="turbo badge" original-title="Twitch Turbo" style="margin-left:4px"></div>');
-				else
-					$(badges).append('<div class="turbo badge" original-title="Twitch Turbo"></div>');*/
+			//Append turbo
+			if(from === 'zarlach')
+			{
+				console.log('found zarlach');
+				$(badges).append('<div class="zar badge" original-title="Developer"></div>');
+
+				var badge = $(badges).find('.zar');
+				badge.css({
+					'background': 'url("http://static-cdn.jtvnw.net/emoticons/v1/28073/1.0")',
+					'background-size': '18px 18px'
+				});
+			}
+			else
+			{
+				console.log(from+' is not Zarlach');
+			}
 		}
 	});
 
