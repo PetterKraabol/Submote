@@ -3,9 +3,8 @@ $(document).ready(function()
 	//Emote object
 	var emotes = {};
 
-	localStorage.removeItem("emotes");
 	//Check if emotes are already stored locally
-	//if (localStorage.getItem("emotes") === null)
+	if (localStorage.getItem("emotes") === null)
 	{
 		//Load emotes from external json file.
 		var loadEmotes = $.getJSON("https://twitchemotes.com/api_cache/v2/subscriber.json", function(data)
@@ -19,19 +18,13 @@ $(document).ready(function()
 			});
 		}).done(function()
 		{
-			console.log('Successfuly loaded all emotes!');
-			//localStorage.setItem("emotes", JSON.stringify(emotes));
-
-			//var ele = $('.chat-line').find('.message');
-			//convert(ele, emotes);
+			localStorage.setItem("emotes", JSON.stringify(emotes));
 		});
 	}
 	else
 	{
 		//Load emotes from local storage
 		emotes = JSON.parse(localStorage.getItem("emotes"));
-		//var ele = $('.chat-line').find('.message');
-		//convert(ele, emotes);
 	}
 
 
@@ -42,29 +35,30 @@ $(document).ready(function()
 	{
 		if ($(e.target).is('.chat-line'))
 		{
-			var ele = $(this).find('.message').last();
-			convert(ele, emotes);
+			var message = $(this).find('.message').last();
+			convert(message, emotes);
 		}
 	});
 
 
 	/**
-	 * Use regex to find text emotes in a message element.
-	 * Text emotes will be replaced with actual emotes.
+	 * Convert message and replace words with emotes!
 	 * 
-	 * @param  {element} ele Message element
+	 * @param  {element} ele  Message element
+	 * @param  {object} list List of emotes
 	 */
+
 	function convert(ele, list){
 		var msg = ele.html();
+		var split = msg.split(" ");
 		var regex;
-		var emote;
 
-		//Search for emotes
-		for (var emote in list)
-		{
-			id = list[emote];
-			regex = new RegExp('\\b'+emote+'\\b(?=[^"]*(?:"[^"]*"[^"]*)*$)', 'g');
-			msg = msg.replace(regex, generateEmoteImage(emote, id));
+		for (var i = 0; i <= split.length; i++) {
+			if(list[split[i]] !== undefined && split[i].length >= 3)
+			{
+				regex = new RegExp('\\b'+split[i]+'\\b(?=[^"]*(?:"[^"]*"[^"]*)*$)', 'g');
+				msg = msg.replace(regex, generateEmoteImage(split[i], list[split[i]]));
+			}
 		}
 
 		ele.html(msg);
