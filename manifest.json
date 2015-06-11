@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "submote",
+  "name": "Submote",
   "description": "Use any sub emote on Twitch",
   "version": "1.0",
-  "author": "Zarlach",
+  "author": "Petter Kraabøl",
   "browser_action": {
     "default_icon": "img/icon128.png"
   },
