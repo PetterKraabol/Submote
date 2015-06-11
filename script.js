@@ -49,18 +49,12 @@ $(document).ready(function()
 			var badges	= line.find('.badges');
 			var from	= line.data('sender');
 
-			console.log(line.html());
-			console.log(message.html());
-			console.log('from:'+from);
-			console.log(badges.html());
-
 			if(from !== 'jtv')
 				convert(message, emotes);
 
 			//Append turbo
 			if(from === 'zarlach')
 			{
-				console.log('found zarlach');
 				$(badges).append('<div class="zar badge" original-title="Developer"></div>');
 
 				var badge = $(badges).find('.zar');
@@ -68,10 +62,6 @@ $(document).ready(function()
 					'background': 'url("http://static-cdn.jtvnw.net/emoticons/v1/28073/1.0")',
 					'background-size': '18px 18px'
 				});
-			}
-			else
-			{
-				console.log(from+' is not Zarlach');
 			}
 		}
 	});
@@ -93,7 +83,8 @@ $(document).ready(function()
 			word = split[i];
 
 			if(list[word] !== undefined
-			   && word[0] === word[0].toLowerCase())
+			   && word[0] === word[0].toLowerCase()
+			   && word !== 'double')
 			{
 				regex = new RegExp('\\b'+word+'\\b(?=[^"]*(?:"[^"]*"[^"]*)*$)', 'g');
 				msg = msg.replace(regex, generateEmoteImage(word, list[word]));

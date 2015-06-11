@@ -1,17 +1,17 @@
 {
   "manifest_version": 2,
 
-  "name": "Twitch Subscriber Emotes",
-  "description": "This extension lets you use any subscriber emote on Twitch! BetterTTV is required.",
+  "name": "submote",
+  "description": "Use any sub emote on Twitch",
   "version": "1.0",
   "author": "Zarlach",
   "browser_action": {
-    "default_icon": "img/icon.png"
+    "default_icon": "img/icon128.png"
   },
 
   "icons": { "16": "img/icon16.png",
              "48": "img/icon48.png",
-            "128": "img/icon.png" },
+            "128": "img/icon128.png" },
 
   "permissions": [
     "activeTab"
