@@ -2,14 +2,15 @@
 $(document).ready(function()
 {	
 	//Global vars
-	var emotes = {};
+	var emotes = {};				// emotes[emote] = id
+	var bttvEmotes = {};			// bttvEmotes[emote] = source
 
 
 	//Check if emotes are already stored locally
-	if (localStorage.getItem("emotes") === null)
-	{
-		//Load emotes from external json file.
-		var loadEmotes = $.getJSON("https://twitchemotes.com/api_cache/v2/subscriber.json", function(data)
+//	if (localStorage.getItem("emotes") === null)
+//	{
+		//Load subscriber emotes from external json file.
+		$.getJSON('https:twitchemotes.com/api_cache/v2/subscriber.json', function(data)
 		{
 			$.each(data['channels'], function(channel, properties)
 			{
@@ -21,44 +22,75 @@ $(document).ready(function()
 		.done(function()
 		{
 			//Store emotes locally
+			console.log('Submote has been successfully loaded');
 			localStorage.setItem("emotes", JSON.stringify(emotes));
+			loadBetterTTVemotes();
 		})
 		.fail(function()
 		{
 			//Failed to load from web, let the user know!
 			$('body').append('<ul id="noty_bottomCenter_layout_container" class="i-am-new" style="bottom: 20px; position: fixed; width: 320px; height: auto; margin: 0px; padding: 0px; list-style-type: none; z-index: 10000; left: 800px;"><li class="noty_bar alert" style="width: 320px;"><div class="noty_bar noty_type_alert" id="noty_152298130185963840"><div class="noty_message"><div class="text-container"><div class="glitch"></div><div class="noty_text"><p>Could not load subscriber emotes :/<br><a href="javascript:history.go(0);">Please refresh</a></p></div></div><div class="noty_close"></div></div></div></li></ul>');
 		});
-	}
-	else
-	{
-		//Load emotes from local storage
-		emotes = JSON.parse(localStorage.getItem("emotes"));
-	}
+//	}
+//	else
+//	{
+//		//Load emotes from local storage
+//		//console.log('Submote has been successfully loaded');
+//		emotes = JSON.parse(localStorage.getItem("emotes"));
+//		loadBetterTTVemotes();
+//	}
 
+	/**
+	 * Load BetterTTV emotes
+	 */
+	function loadBetterTTVemotes(){
+		var url = 'https://cdn.betterttv.net/emotes/emotes.json';
+
+		$.getJSON(url, function(data){
+			console.log('Loading bttv emotes');
+			$.each(data, function(key, value){
+				bttvEmotes[value['regex'].replace('\\', '')] = value['url'].replace('//', 'https://');
+			});
+		})
+		.done(function(){
+			console.log('Loaded bttv emotes');
+			localStorage.setItem("emotes", JSON.stringify(emotes));
+		})
+		.fail(function(){
+			console.log('Could not load bttv emotes');
+			$('body').append('<ul id="noty_bottomCenter_layout_container" class="i-am-new" style="bottom: 20px; position: fixed; width: 320px; height: auto; margin: 0px; padding: 0px; list-style-type: none; z-index: 10000; left: 800px;"><li class="noty_bar alert" style="width: 320px;"><div class="noty_bar noty_type_alert" id="noty_152298130185963840"><div class="noty_message"><div class="text-container"><div class="glitch"></div><div class="noty_text"><p>Could not load BetterTTV emotes :/<br><a href="javascript:history.go(0);">Please refresh</a></p></div></div><div class="noty_close"></div></div></div></li></ul>');
+		});
+	}
 
 	/**
 	 * Check for new chat messages
 	 */
-	$('.chat-lines').on('DOMNodeInserted', function(e)
+	$('.chat-lines').bind('DOMNodeInserted', function(e)
 	{
-		if ($(e.target).is('.chat-line'))
-		{
+		var usingBetterTTV = false;
+		var element = e.target;
+		var line = $(element).last();
 
-			var line 	= $(this).find('.chat-line').last();
-			var message = line.find('.message');
+		if (line.last().length && line.find('.message').last().html() !== undefined)
+		{
+			console.log('Found message');
+			var message = line.find('.message').last();
 			var badges	= line.find('.badges');
-			var from	= line.data('sender');
+			var from	= line.find('.from').html();
 
 			if(from !== 'jtv')
+			{
 				convert(message, emotes);
+				convertBetterTTV(message, bttvEmotes);
+			}
 
 			//Append turbo
-			if(from === 'zarlach')
+			if(from.toLowerCase() === 'zarlach'
+				&& badges.last().find('.submote-dev').length === 0)
 			{
-				$(badges).append('<div class="zar badge" original-title="Submote Dev"></div>');
+				$(badges).append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
 
-				var badge = $(badges).find('.zar');
-				badge.css({
+				$(badges).find('.submote-dev').css({
 					'width': '18px',
 					'height': '18px',
 					'background-repat': 'no-repeat',
@@ -98,6 +130,26 @@ $(document).ready(function()
 		ele.html(msg);
 	}
 
+	function convertBetterTTV(ele, list){
+		var msg = ele.html();
+		var split = msg.split(" ");
+		var regex;
+		var word;
+
+		for (var i = 0; i <= split.length; i++) {
+			word = split[i];
+
+			if(list[word] !== undefined)
+			{
+				regex = new RegExp('\\b'+word+'\\b(?=[^"]*(?:"[^"]*"[^"]*)*$)', 'g');
+				msg = msg.replace(regex, generateBTTVemoteImage(word, list[word]));
+			}
+		}
+
+		//Update message
+		ele.html(msg);
+	}
+
 
 	/**
 	 * Generate emote image HTML tag.
@@ -108,6 +160,10 @@ $(document).ready(function()
 	function generateEmoteImage(emote, id)
 	{
 		return '<img class="emoticon ttv-emo-'+id+'" src="http://static-cdn.jtvnw.net/emoticons/v1/'+id+'/1.0" srcset="http://static-cdn.jtvnw.net/emoticons/v1/'+id+'/2.0 2x" data-id="'+id+'" data-regex="'+emote+'" original-title="">';
+	}
+
+	function generateBTTVemoteImage(emote, source){
+		return '<img class="emoticon" src="'+source+'" data-regex="'+emote+'" original-title>';
 	}
 
 });

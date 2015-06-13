@@ -3,7 +3,7 @@
 
   "name": "Submote",
   "description": "Use any sub emote on Twitch",
-  "version": "1.0",
+  "version": "1.0.1",
   "author": "Petter Kraabøl",
   "browser_action": {
     "default_icon": "img/icon128.png"
@@ -14,12 +14,20 @@
             "128": "img/icon128.png" },
 
   "permissions": [
-    "activeTab"
+     "http://www.twitch.tv/*",
+     "activeTab",
+     "tabs",
+     "webNavigation"
   ],
+
   "content_scripts": [
     {
       "matches": ["http://www.twitch.tv/*"],
-      "js": ["jquery.js", "script.min.js"]
+      "js": ["jquery.js", "script.js"]
     }
-  ]
+  ],
+
+   "background": {
+    "scripts": ["jquery.js", "script.min.js"]
+  }
 }
