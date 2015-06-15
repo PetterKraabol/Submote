@@ -1,5 +1,5 @@
-#Submote
 ![Submote](https://raw.githubusercontent.com/PetterKraabol/Submote/master/images/marquee.png)
+#Submote
 ##Chrome Extension
 If you are looking for the Submote extension for Google Chrome, [click here](https://chrome.google.com/webstore/detail/submote/neenedpcihpgfmgohilhfidaknihiofk)
 
