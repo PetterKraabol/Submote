@@ -1,4 +1,4 @@
-#![Submote](https://raw.githubusercontent.com/PetterKraabol/Submote/master/images/icon48.png)Submote
+#Submote
 ##Chrome Extension
 If you are looking for the Submote extension for Google Chrome, [click here](https://chrome.google.com/webstore/detail/submote/neenedpcihpgfmgohilhfidaknihiofk)
 
