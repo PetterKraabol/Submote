@@ -1,6 +1,8 @@
 //Developed by Zarlach
 $(document).ready(function()
 {	
+	console.log('Submote detected!');
+
 	//Global vars
 	var subMotes 	= {};			// subMotes[emote] = source
 	var subEmotes 	= {};			// subEmotes[emote] = id
@@ -87,11 +89,14 @@ $(document).ready(function()
 		var line 	= $(element).last();
 
 		//Check if it's a message
-		if (line.last().length && line.find('.message').last().html() !== undefined)
+		if (line.last().length
+			&& line.find('.message').last().html() !== 'undefined'
+			&& line.find('.timestamp').last().html() !== 'undefined'
+			&& line.find('.svg-whisper-arrow').html().length === 0)
 		{
 			var message = line.find('.message').last();
 			var badges	= line.find('.badges');
-			var from	= line.find('.from').html();
+			var from	= line.find('.from').last().html();
 
 			//Parse message
 			if(from.toLowerCase() !== 'jtv')
@@ -103,6 +108,7 @@ $(document).ready(function()
 			//Append turbo
 			if(from.toLowerCase() === 'zarlach' && badges.last().find('.submote-dev').length === 0)
 			{
+				console.log(from+' -> '+badges.last().html());
 				$(badges).last().append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
 				$(badges).last().find('.submote-dev').css({
 					'width': '18px',
