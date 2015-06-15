@@ -103,8 +103,8 @@ $(document).ready(function()
 			//Append turbo
 			if(from.toLowerCase() === 'zarlach' && badges.last().find('.submote-dev').length === 0)
 			{
-				$(badges).append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
-				$(badges).find('.submote-dev').css({
+				$(badges).last().append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
+				$(badges).last().find('.submote-dev').css({
 					'width': '18px',
 					'height': '18px',
 					'background-repat': 'no-repeat',
@@ -182,7 +182,11 @@ $(document).ready(function()
 		//Provider specific filter
 		switch(provider){
 			case 'twitch':
-				if (word[0] !== word[0].toLowerCase() || word === 'double')
+				if (word[0] !== word[0].toLowerCase()
+					|| word === 'double'
+					|| word === 'triple'
+					|| word === 'penta'
+					|| word === 'snap')
 					return false;
 
 				break;
