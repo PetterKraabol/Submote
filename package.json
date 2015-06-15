@@ -1,11 +1,11 @@
 {
   "name": "Submote",
-  "author": "Petter Kraabøl",
+  "author": "Zarlach",
   "version": "1.1.3",
   "description": "Use any sub emote on Twitch",
   "main": "submote.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/PetterKraabol/Submote.git"
+    "url": "https://github.com/Zarlach/Submote.git"
   }
 }
