@@ -23,11 +23,11 @@
   "content_scripts": [
     {
       "matches": ["http://www.twitch.tv/*"],
-      "js": ["src/jquery.js", "submote.js"]
+      "js": ["submote.js"]
     }
   ],
 
    "background": {
-    "scripts": ["src/jquery.js", "submote.js"]
+    "scripts": ["submote.js"]
   }
 }
