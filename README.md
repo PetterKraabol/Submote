@@ -1,4 +1,6 @@
 #Submote
+
+[![Join the chat at https://gitter.im/Zarlach/Submote](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Zarlach/Submote?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Submote will let you use any subscriber emote on Twitch.
 
 Keep in mind that only people with Submote will be able to see your new emotes in the Twitch chat. Submote will not affect your current subscriber emotes and is compatible with most Twitch extensions.
