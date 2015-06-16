@@ -3,7 +3,7 @@
 
   "name": "Submote",
   "description": "Use any sub emote on Twitch",
-  "homepage_url": "http://petterkraabol.github.io/Submote/",
+  "homepage_url": "http://zarlach.github.io/Submote/",
   "version": "1.1.3",
   "author": "Zarlach",
   "browser_action": {

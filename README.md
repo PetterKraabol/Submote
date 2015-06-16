@@ -1,6 +1,6 @@
 #Submote
 ##Chrome Extension
-If you are looking for the Submote extension for Google Chrome, [click here](https://chrome.google.com/webstore/detail/submote/neenedpcihpgfmgohilhfidaknihiofk)
+If you are looking for the Chrome extension, [click here](https://chrome.google.com/webstore/detail/submote/neenedpcihpgfmgohilhfidaknihiofk)
 
 ###Description
 Submote will let you use any subscriber emote on Twitch.
