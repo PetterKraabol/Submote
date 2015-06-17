@@ -1,7 +1,7 @@
-#Changelog
+#Submote Changelog
 ###v1.1.3
 - Improved stability
-- Warning: Compatability issues with FrankerFaceZ while having BetterTTV disabled: Submote dev badges are sometimes given to random chatters.
+- Warning: Compatibility issues with FrankerFaceZ while having BetterTTV disabled: Submote dev badges are sometimes given to random chatters.
 
 ###v1.1.2
 - Check for new emotes every 30 minutes.
@@ -14,4 +14,4 @@
 - Improved stability
 
 ###v1.0.0
-- First version
+- First release
