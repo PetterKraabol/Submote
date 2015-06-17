@@ -1,4 +1,7 @@
 #Submote Changelog
+###v1.1.4
+- Fixed extension file size
+
 ###v1.1.3
 - Improved stability
 - Warning: Compatibility issues with FrankerFaceZ while having BetterTTV disabled: Submote dev badges are sometimes given to random chatters.

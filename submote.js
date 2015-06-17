@@ -7,7 +7,6 @@ return new Za.prototype.init(a,b,c,d,e)}m.Tween=Za,Za.prototype={constructor:Za,
 //Submote by Zarlach
 $(document).ready(function()
 {
-	console.log('Submode has been loaded');
 	//Global vars
 	var subMotes 	= {};			// subMotes[emote] = source
 	var subEmotes 	= {};			// subEmotes[emote] = id
@@ -93,8 +92,6 @@ $(document).ready(function()
 		var element = e.target;
 		var line 	= $(element).last();
 
-		console.log(line.not('.admin'));
-
 		//Check if it's a message
 		if (line.last().length
 			&& line.find('.message').last().html() !== undefined
@@ -108,10 +105,6 @@ $(document).ready(function()
 			//Parse message
 			if(from !== 'jtv')
 			{
-				console.log(message.html());
-				console.log(badges.html());
-				console.log(from);
-			
 				parseMessage(message, subEmotes);
 				parseMessage(message, bttvEmotes);
 			}
