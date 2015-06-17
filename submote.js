@@ -80,7 +80,7 @@ $(document).ready(function()
 			localStorage.setItem("bttvEmotes", JSON.stringify(bttvEmotes));
 		})
 		.fail(function(){
-			sendError('Submote could not load BetterTTV emotes');
+			//sendError('Submote could not load BetterTTV emotes');
 		});
 	}
 
@@ -219,8 +219,6 @@ $(document).ready(function()
 					|| word === 'kill'
 					|| word === 'snap')
 					return false;
-
-				^(?=.*[a-z])(?=.*[A-Z]).+$
 
 				break;
 			case 'betterttv':
