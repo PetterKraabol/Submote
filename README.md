@@ -22,7 +22,4 @@ If you are looking for the Chrome extension, [click here](https://chrome.google.
 - See and use BetterTTV emotes without BetterTTV extension.
 - Performance and stability improvements
 
-####Fixes in v1.1.2
-- Checks for new emotes every 30 minutes.
-
 [Changelog](https://github.com/Zarlach/Submote/blob/master/CHANGELOG.md)
