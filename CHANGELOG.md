@@ -19,7 +19,7 @@
 - BetterTTV is no longer required
 - Improved stability
 
-#Submote v1.0
+##Submote v1.0
 
 ###v1.0.0
 - First release
