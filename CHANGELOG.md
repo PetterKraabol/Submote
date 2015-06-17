@@ -1,4 +1,7 @@
 #Submote Changelog
+
+##Submote v1.1
+
 ###v1.1.4
 - Fixed extension file size
 
@@ -15,6 +18,8 @@
 ###v1.1
 - BetterTTV is no longer required
 - Improved stability
+
+#Submote v1.0
 
 ###v1.0.0
 - First release
