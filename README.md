@@ -24,3 +24,5 @@ If you are looking for the Chrome extension, [click here](https://chrome.google.
 
 ####Fixes in v1.1.2
 - Checks for new emotes every 30 minutes.
+
+[Changelog](https://github.com/Zarlach/Submote/blob/master/CHANGELOG.md)
