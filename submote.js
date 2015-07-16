@@ -80,7 +80,7 @@ $(document).ready(function()
     
 
     $('.chat-lines').livequery(function(){
-        console.log(this.html());
+        console.log('Change');
     });
 
     /**
