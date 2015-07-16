@@ -60,8 +60,8 @@ $(document).ready(function()
                 $(badges).last().find('.submote-dev').css({
                     'width': '18px',
                     'height': '18px',
+                    'background': 'url("https://raw.githubusercontent.com/Zarlach/Submote/master/images/dev-badge.png")',
                     'background-repat': 'no-repeat',
-                    'background': url('https://raw.githubusercontent.com/Zarlach/Submote/master/images/dev-badge.png'),
                     'background-size': '18px 18px'
                 });
             }
