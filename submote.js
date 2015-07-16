@@ -95,6 +95,7 @@ $(document).ready(function()
         .fail(function()
         {
             //sendError('Submote could not load sub emotes');
+            console.log('Could not load sub emotes');
         });
     }
 
@@ -114,7 +115,7 @@ $(document).ready(function()
             localStorage.setItem("bttvEmotes", JSON.stringify(bttvEmotes));
         })
         .fail(function(){
-            //sendError('Submote could not load BetterTTV emotes');
+            console.log('Submote could not load BetterTTV emotes');
         });
     }
 
