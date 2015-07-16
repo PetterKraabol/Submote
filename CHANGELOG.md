@@ -10,6 +10,7 @@
 
 ###v1.1.3
 - Improved stability
+- BetterTTV emotes can now be used without the plugin
 - Warning: Compatibility issues with FrankerFaceZ while having BetterTTV disabled: Submote dev badges are sometimes given to random chatters.
 
 ###v1.1.2
