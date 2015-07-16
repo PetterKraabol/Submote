@@ -1,7 +1,7 @@
 {
   "name": "Submote",
   "author": "Zarlach",
-  "version": "1.1.5",
+  "version": "2.0",
   "description": "Use any sub emote on Twitch",
   "main": "submote.js",
   "repository": {
