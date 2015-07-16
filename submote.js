@@ -59,7 +59,7 @@ $('.chat-lines').on('DOMNodeInserted', function(e)
             $(badges).last().find('.submote-dev').css({
                 'width': '18px',
                 'height': '18px',
-                'background-image': 'url(https://raw.githubusercontent.com/Zarlach/Submote/stable/images/dev-badge.png)',
+                'background-image': 'url(https://cdn.rawgit.com/Zarlach/Submote/master/images/dev-badge.png)',
                 'background-repat': 'no-repeat',
                 'background-size': '18px 18px'
             });
