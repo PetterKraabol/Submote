@@ -1,5 +1,12 @@
 #Submote Changelog
 
+##Submote v2.0
+
+###v2.0.0
+- Submote should now run 99% of the time!
+- Updates should now be smoother as it fetches the most recent Submote version from GitHub
+- Known bug: some people are given dev badges randomly. (Zarlach is the only dev atm)
+
 ##Submote v1.1
 
 ###v1.1.5

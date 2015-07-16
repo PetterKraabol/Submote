@@ -13,13 +13,11 @@ If you are looking for the Chrome extension, [click here](https://chrome.google.
 - Use global BetterTTV emotes without their extension.
 
 ####To-do list
-- Submote is currenlty unstable and won't run all the time.
+- Fix: Random people are being given submote dev badges.
 - Support channel specific BetterTTV emotes.
-- Create an emote blacklist to prevent regular words from turning into emotes. Words such as "kill", "double" and "triple" are subscriber emotes.
 
-####What's new in Submote v1.1?
-- BetterTTV is no longer required.
-- See and use BetterTTV emotes without BetterTTV extension.
-- Performance and stability improvements
+####What's new in Submote v2?
+- Submote should now run 99% of the time!
+- Updates should now be smoother as it fetches the most recent Submote version from GitHub
 
 [Changelog](https://github.com/Zarlach/Submote/blob/master/CHANGELOG.md)
