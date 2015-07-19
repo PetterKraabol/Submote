@@ -35,42 +35,52 @@ else{
 /**
  * Check for new chat messages
  */
-$('.chat-lines').on('DOMNodeInserted', function(e)
-{
-    var element = e.target;
-    var line    = $(element).last();
-
-    //Check if it's a message
-    if (line.last().length
-        && line.find('.message').last().html() !== undefined
-        && line.not('.admin'))
+$(document).read(function(){
+    $('.chat-lines').on('DOMNodeInserted', function(e)
     {
-        var message = line.find('.message').last();
-        var badges  = line.find('.badges');
-        var from    = line.find('.from').html().toLowerCase();
-        
+        var element = e.target;
+        var line    = $(element).last();
 
-        //Parse message
-        if(from !== 'jtv')
-        {
-            parseMessage(message, subEmotes);
-            parseMessage(message, bttvEmotes);
+        // Extensions
+        var ffz  = false;
+        var bttv = false;
+
+        // Usually, chat messages are called 'chat-line' (class)
+        if($('li.chat-line').length){
+            line = $('.chat-line').last();
+            console.log(line.attr('data-sender'));
         }
 
-        //Append turbo
-        if(from === 'zarlach' && badges.last().find('.submote-dev').length === 0)
+        //Check if it's a message
+        if (line.last().length
+            && line.find('.message').last().html() !== undefined
+            && line.not('.admin'))
         {
-            $(badges).last().append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
-            $(badges).last().find('.submote-dev').css({
-                'width': '18px',
-                'height': '18px',
-                'background-image': 'url(https://cdn.rawgit.com/Zarlach/Submote/master/images/dev-badge.png)',
-                'background-repat': 'no-repeat',
-                'background-size': '18px 18px'
-            });
+            var message = line.find('.message').last();
+            var badges  = line.find('.badges');
+            var from    = line.find('.from').html().toLowerCase();
+            
+
+            //Parse message
+            if(from !== 'jtv') {
+                parseMessage(message, subEmotes);
+                parseMessage(message, bttvEmotes);
+            }
+
+            //Append turbo
+            if(from === 'zarlach' && badges.last().find('.submote-dev').length === 0) {
+                $(badges).last().append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
+                $(badges).last().find('.submote-dev').css({
+                    'width': '18px',
+                    'height': '18px',
+                    'background-image': 'url(https://cdn.rawgit.com/Zarlach/Submote/master/images/dev-badge.png)',
+                    'background-repat': 'no-repeat',
+                    'background-size': '18px 18px'
+                });
+            }
         }
-    }
-});
+    });
+})
 
 /**
  * Load subscriber emotes from web
