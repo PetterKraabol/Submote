@@ -1,12 +1,15 @@
 // Submote by Zarlach
 
-//Global vars
+// Global vars
 var subMotes    = {};           // subMotes[emote] = source
 var subEmotes   = {};           // subEmotes[emote] = id
 var bttvEmotes  = {};           // bttvEmotes[emote] = source
 
+// Custom emotes
+bttvEmotes['PepePls'] = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
 
-//Check if emotes are already stored locally
+
+// Check if emotes are already stored locally
 if (localStorage.getItem("subEmotes") === null)
     loadSubEmotes();
 else
