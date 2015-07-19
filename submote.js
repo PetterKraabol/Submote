@@ -1,5 +1,7 @@
 // Submote by Zarlach
 
+console.log('Submote has started');
+
 // Global vars
 var subMotes    = {};           // subMotes[emote] = source
 var subEmotes   = {};           // subEmotes[emote] = id
