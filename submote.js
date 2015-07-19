@@ -37,52 +37,73 @@ else{
 /**
  * Check for new chat messages
  */
-$(document).ready(function(){
-    $('.chat-lines').on('DOMNodeInserted', function(e)
-    {
-        console.log('Detected new message');
-        var element = e.target;
-        var line    = $(element).last();
+$(document).ready(function(evt){
 
-        // Extensions
-        var ffz  = false;
-        var bttv = false;
+    // An attempt to find a new and better way to detect new messages
+    
+    // Target node
+    var target = document.querySelector('.chat-line');
 
-        // Usually, chat messages are called 'chat-line' (class)
-        if($('li.chat-line').length){
-            line = $('.chat-line').last();
-            console.log(line.attr('data-sender'));
-        }
-
-        //Check if it's a message
-        if (line.last().length
-            && line.find('.message').last().html() !== undefined
-            && line.not('.admin'))
-        {
-            var message = line.find('.message').last();
-            var badges  = line.find('.badges');
-            var from    = line.find('.from').html().toLowerCase();
-            
-
-            //Parse message
-            if(from !== 'jtv') {
-                parseMessage(message, subEmotes);
-                parseMessage(message, bttvEmotes);
-            }
-
-            //Append turbo
-            if(from === 'zarlach' && badges.last().find('.submote-dev').length === 0) {
-                $(badges).last().append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
-                $(badges).last().find('.submote-dev').css({
-                    'width': '18px',
-                    'height': '18px',
-                    'background-image': 'url(https://cdn.rawgit.com/Zarlach/Submote/master/images/dev-badge.png)',
-                    'background-repat': 'no-repeat',
-                    'background-size': '18px 18px'
-                });
-            }
-        }
+    // Observer intsance
+    var observer = new MutationObserver(function(mutations){
+        mutations.forEach(function(mutation){
+            console.log(mutation.type);
+        })
     });
+
+    // Mutation config
+    var config = {attributes: true, childList: true, characterData: true};
+
+    // Pass in target and config
+    observer.observe(target, config);
+
+    // Disconnect observer
+    // observer.disconnect();
+
+//    $('.xxxxxxchat-lines').on('DOMNodeInserted', function(e)
+//    {
+//        var element = e.target;
+//        var line    = $(element).last();
+//
+//        // Extensions
+//        var ffz  = false;
+//        var bttv = false;
+//
+//        // Usually, chat messages are called 'chat-line' (class)
+//        if($('li.chat-line').length){
+//            line = $('.chat-line').last();
+//            console.log(line.attr('data-sender'));
+//        }
+//
+//        //Check if it's a message
+//        if (line.last().length
+//            && line.find('.message').last().html() !== undefined
+//            && line.not('.admin'))
+//        {
+//            var message = line.find('.message').last();
+//            var badges  = line.find('.badges');
+//            var from    = line.find('.from').html().toLowerCase();
+//            
+//
+//            //Parse message
+//            if(from !== 'jtv') {
+//                parseMessage(message, subEmotes);
+//                parseMessage(message, bttvEmotes);
+//            }
+//
+//            //Append turbo
+//            if(from === 'zarlach' && badges.last().find('.submote-dev').length === 0) {
+//                $(badges).last().append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
+//                $(badges).last().find('.submote-dev').css({
+//                    'width': '18px',
+//                    'height': '18px',
+//                    'background-image': 'url(https://cdn.rawgit.com/Zarlach/Submote/master/images/dev-badge.png)',
+//                    'background-repat': 'no-repeat',
+//                    'background-size': '18px 18px'
+//                });
+//            }
+//        }
+//    });
 });
 
 /**
