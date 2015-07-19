@@ -40,6 +40,7 @@ else{
 $(document).read(function(){
     $('.chat-lines').on('DOMNodeInserted', function(e)
     {
+        console.log('Detected new message');
         var element = e.target;
         var line    = $(element).last();
 
