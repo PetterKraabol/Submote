@@ -1,12 +1,12 @@
 // Submote by Zarlach
 
-//Global vars
+// Global vars
 var subMotes    = {};           // subMotes[emote] = source
 var subEmotes   = {};           // subEmotes[emote] = id
 var bttvEmotes  = {};           // bttvEmotes[emote] = source
 
 
-//Check if emotes are already stored locally
+// Check if emotes are already stored locally
 if (localStorage.getItem("subEmotes") === null)
     loadSubEmotes();
 else
@@ -23,8 +23,13 @@ else
 
 if (localStorage.getItem("bttvEmotes") === null)
     loadBetterTTVemotes();
-else
+else{
     bttvEmotes = JSON.parse(localStorage.getItem("bttvEmotes"));
+
+    // Custom BetterTTV Emotes
+    bttvEmotes['PepePls'] = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
+    bttvEmotes['(ditto)'] = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
+}
 
 
 /**
