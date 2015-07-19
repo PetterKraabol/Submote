@@ -2,6 +2,9 @@
 
 ##Submote v2.0
 
+###v2.1.0
+- Using a new method to detect messages for stability improvements
+
 ###v2.0.0
 - Submote should now run 99% of the time!
 - Updates should now be smoother as it fetches the most recent Submote version from GitHub
