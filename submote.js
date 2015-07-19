@@ -37,7 +37,7 @@ else{
 /**
  * Check for new chat messages
  */
-$(document).read(function(){
+$(document).ready(function(){
     $('.chat-lines').on('DOMNodeInserted', function(e)
     {
         console.log('Detected new message');
