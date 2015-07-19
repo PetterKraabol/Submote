@@ -82,7 +82,7 @@ $(document).read(function(){
             }
         }
     });
-})
+});
 
 /**
  * Load subscriber emotes from web
