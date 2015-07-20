@@ -1,5 +1,7 @@
 // Submote by Zarlach
 
+console.log('Submote is running');
+
 // Global vars
 var subMotes    = {};           // subMotes[emote] = source
 var subEmotes   = {};           // subEmotes[emote] = id
@@ -28,49 +30,108 @@ else{
 
     // Custom BetterTTV Emotes
     bttvEmotes['PepePls'] = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
-    bttvEmotes['(ditto)'] = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
+    bttvEmotes['\(ditto\)'] = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
 }
 
 
 /**
- * Check for new chat messages
+ * Observe for new
  */
-$('.chat-lines').on('DOMNodeInserted', function(e)
-{
-    var element = e.target;
-    var line    = $(element).last();
+$(document).ready(function(evt){
 
-    //Check if it's a message
-    if (line.last().length
-        && line.find('.message').last().html() !== undefined
-        && line.not('.admin'))
-    {
-        var message = line.find('.message').last();
-        var badges  = line.find('.badges');
-        var from    = line.find('.from').html().toLowerCase();
-        
+    // An attempt to find a new and better way to detect new messages
+    var target = false;
+    
+    // Observer intsance
+    var observer = new MutationObserver(function(mutations){
+        mutations.forEach(function(mutation){
+            if(mutation.addedNodes){
 
-        //Parse message
-        if(from !== 'jtv')
-        {
-            parseMessage(message, subEmotes);
-            parseMessage(message, bttvEmotes);
-        }
+                // Check for queued messages
+                if(mutation.addedNodes.length > 1){
+                    for(var i = 0; i < mutation.addedNodes.length; i++){
 
-        //Append turbo
-        if(from === 'zarlach' && badges.last().find('.submote-dev').length === 0)
-        {
-            $(badges).last().append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
-            $(badges).last().find('.submote-dev').css({
-                'width': '18px',
-                'height': '18px',
-                'background-image': 'url(https://cdn.rawgit.com/Zarlach/Submote/master/images/dev-badge.png)',
-                'background-repat': 'no-repeat',
-                'background-size': '18px 18px'
-            });
-        }
-    }
+                        // Make it readable to newMessage()
+                        var message = [mutation.addedNodes[i]];
+
+                        newMessage(message);
+                    }
+                }else{
+                    newMessage(mutation.addedNodes);
+                }
+            }
+        });
+    });
+
+    // Mutation config
+    var config = {
+        attributes: true,
+        childList: true,
+        subtree: true,
+        characterData: true,
+     };
+
+    // Start the observer
+    while(!target || target === null)
+        target = document.querySelector('.chat-lines');
+
+    observer.observe(target, config);
 });
+
+/**
+ * Handle new messages
+ */
+function newMessage(message){
+    var line = false;
+    var bttv = true;        // Assume true
+
+    // Check if using vanilla or FrankerFaceZ
+    if($(message[1]).find('.chat-line').length){
+        line    = $(message[1]).find('li.chat-line');
+        bttv    = false;
+    }
+
+    // Check if using BetterTTV
+    if(bttv && !line && $(message[0]).length){
+        line    = $(message[0]);
+    }
+
+    // No message line detection? Abort
+    if(!line) return false;
+
+    // Fetch message metadata
+    // var room    = line.attr('data-room');
+    var sender  = line.attr('data-sender');
+    var sender  = line.find('.from').html();
+    var badges  = line.find('.badges');
+    var text    = line.find('.message');
+
+    // No message text? Abort
+    if(!text.length) return false;
+
+    // If room and sender is undefined, the user is using vanilla Twitch
+    if(sender === undefined && line.find('.from').length){
+        sender = line.find('.from').html().toLowerCase();
+    }
+
+    // Parse message text
+    parseMessage(text, subEmotes);
+    parseMessage(text, bttvEmotes);
+
+    // Append submote badges
+    if(sender.toLowerCase() === 'zarlach' && !badges.find('.submote-dev').length){
+        $(badges).append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
+        $(badges).find('.submote-dev').css({
+            'width': '18px',
+            'height': '18px',
+            'background-image': 'url(https://cdn.rawgit.com/Zarlach/Submote/master/images/dev-badge.png)',
+            'background-repat': 'no-repeat',
+            'background-size': '18px 18px'
+        });
+    }
+
+    return true;
+}
 
 /**
  * Load subscriber emotes from web
