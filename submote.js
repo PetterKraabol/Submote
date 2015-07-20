@@ -40,12 +40,26 @@ else{
 $(document).ready(function(evt){
 
     // An attempt to find a new and better way to detect new messages
-    var target = document.querySelector('.chat-lines');
+    var target = false;
     
     // Observer intsance
     var observer = new MutationObserver(function(mutations){
         mutations.forEach(function(mutation){
-            newMessage(mutation.addedNodes);
+            if(mutation.addedNodes){
+
+                // Check for queued messages
+                if(mutation.addedNodes.length > 1){
+                    for(var i = 0; i < mutation.addedNodes.length; i++){
+
+                        // Make it readable to newMessage()
+                        var message = [mutation.addedNodes[i]];
+
+                        newMessage(message);
+                    }
+                }else{
+                    newMessage(mutation.addedNodes);
+                }
+            }
         });
     });
 
@@ -57,7 +71,10 @@ $(document).ready(function(evt){
         characterData: true,
      };
 
-    // Pass in target and config
+    // Start the observer
+    while(!target || target === null)
+        target = document.querySelector('.chat-lines');
+
     observer.observe(target, config);
 });
 
@@ -65,7 +82,6 @@ $(document).ready(function(evt){
  * Handle new messages
  */
 function newMessage(message){
-    console.log('new message');
     var line = false;
     var bttv = true;        // Assume true
 
@@ -84,7 +100,7 @@ function newMessage(message){
     if(!line) return false;
 
     // Fetch message metadata
-   // var room    = line.attr('data-room');
+    // var room    = line.attr('data-room');
     var sender  = line.attr('data-sender');
     var sender  = line.find('.from').html();
     var badges  = line.find('.badges');
