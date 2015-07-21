@@ -30,17 +30,17 @@ else{
 
     // Custom BetterTTV Emotes
     bttvEmotes['PepePls'] = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
-    bttvEmotes['\(ditto\)'] = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
+    bttvEmotes['(ditto)'] = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
 }
 
 
 /**
- * Observe for new
+ * Observe for new messages
  */
 $(document).ready(function(evt){
 
     // An attempt to find a new and better way to detect new messages
-    var target = false;
+    var target = document;
     
     // Observer intsance
     var observer = new MutationObserver(function(mutations){
@@ -72,8 +72,8 @@ $(document).ready(function(evt){
      };
 
     // Start the observer
-    while(!target || target === null)
-        target = document.querySelector('.chat-lines');
+    //while(!target || target === null)
+    //    target = document.querySelector('.chat-lines');
 
     observer.observe(target, config);
 });

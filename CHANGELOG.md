@@ -1,6 +1,6 @@
 #Submote Changelog
 
-##Submote v2.0
+##Submote v2
 
 ###v2.1.0
 - Using a new method to detect messages for stability improvements
@@ -10,7 +10,7 @@
 - Updates should now be smoother as it fetches the most recent Submote version from GitHub
 - Known bug: some people are given dev badges randomly. (Zarlach is the only dev atm)
 
-##Submote v1.1
+##Submote v1
 
 ###v1.1.5
 - Fixed small image reference error
@@ -32,8 +32,6 @@
 ###v1.1
 - BetterTTV is no longer required
 - Improved stability
-
-##Submote v1.0
 
 ###v1.0.0
 - First release
