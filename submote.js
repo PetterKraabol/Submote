@@ -199,11 +199,12 @@ function loadBetterTTVemotes()
  */
 function loadCustomEmotes(){
     // To-do: generalize bttvEmotes into customEmotes
+    bttvEmotes['Submote']       = 'https://cdn.rawgit.com/Zarlach/Submote/master/images/icon16.png';
+
     bttvEmotes['PepePls']       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
     bttvEmotes['SnoopPls']      = 'https://cdn.betterttv.net/emote/55a05e85cc07004a41f8b1d7/1x';
-    bttvEmotes[':ditto:']       = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
+    bttvEmotes['Ditto']         = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
     bttvEmotes['FeelsOhWait']   = 'http://cdn.betterttv.net/emote/55ab96ce9406e5482db53424/1x';
-    bttvEmotes['CarePackageHype'] = 'https://cdn.betterttv.net/emote/55af0cf9be915dff65e4be1a/1x';
     bttvEmotes['blueHula']      = 'https://cdn.betterttv.net/emote/55adf775917af02166048acd/1x';
     bttvEmotes['ShakeItOff']    = 'https://cdn.betterttv.net/emote/55a9875be80089ed0bf297a0/1x';
 
