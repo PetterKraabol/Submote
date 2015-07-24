@@ -199,6 +199,9 @@ function loadBetterTTVemotes()
  */
 function loadCustomEmotes(){
     // To-do: generalize bttvEmotes into customEmotes
+    
+    bttvEmotes['aaaDuhface']    = 'http://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
+
     bttvEmotes['PepePls']       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
     bttvEmotes['SnoopPls']      = 'https://cdn.betterttv.net/emote/55a05e85cc07004a41f8b1d7/1x';
     bttvEmotes['Ditto']         = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
