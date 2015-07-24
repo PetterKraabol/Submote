@@ -23,14 +23,23 @@ else
         loadSubEmotes();
 }
 
-if (localStorage.getItem("bttvEmotes") === null)
+if (localStorage.getItem("bttvEmotes") === null){
     loadBetterTTVemotes();
+    loadCustomEmotes();
+}
 else{
     bttvEmotes = JSON.parse(localStorage.getItem("bttvEmotes"));
 
-    // Custom BetterTTV Emotes
-    bttvEmotes['PepePls'] = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
-    bttvEmotes['(ditto)'] = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
+        bttvEmotes      = JSON.parse(localStorage.getItem("bttvEmotes"));
+    var genDate         = bttvEmotes['generated_at'];
+    var currentDate     = new Date();
+    var expirationDate  = genDate+3600*1000/2;  //30 minutes
+
+    //Check if expired
+    if(currentDate.getTime() >= expirationDate)
+        loadBetterTTVemotes();
+
+    loadCustomEmotes();
 }
 
 
@@ -176,11 +185,45 @@ function loadBetterTTVemotes()
     })
     .done(function(){
         bttvEmotes['provider'] = 'betterttv';
+        bttvEmotes['generated_at'] = new Date();
+
         localStorage.setItem("bttvEmotes", JSON.stringify(bttvEmotes));
     })
     .fail(function(){
         console.log('Submote could not load BetterTTV emotes');
     });
+}
+
+/**
+ * Load Custom Emotes
+ */
+function loadCustomEmotes(){
+    // To-do: generalize bttvEmotes into customEmotes
+    bttvEmotes['PepePls']       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
+    bttvEmotes['SnoopPls']      = 'https://cdn.betterttv.net/emote/55a05e85cc07004a41f8b1d7/1x';
+    bttvEmotes[':ditto:']       = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
+    bttvEmotes['FeelsOhWait']   = 'http://cdn.betterttv.net/emote/55ab96ce9406e5482db53424/1x';
+    bttvEmotes['CarePackageHype'] = 'https://cdn.betterttv.net/emote/55af0cf9be915dff65e4be1a/1x';
+    bttvEmotes['blueHula']      = 'https://cdn.betterttv.net/emote/55adf775917af02166048acd/1x';
+    bttvEmotes['ShakeItOff']    = 'https://cdn.betterttv.net/emote/55a9875be80089ed0bf297a0/1x';
+
+    // FrankerFaceZ
+    bttvEmotes['CatBag']        = 'http://cdn.frankerfacez.com/emoticon/25927/1';
+    bttvEmotes['CoolCatBag']    = 'http://cdn.frankerfacez.com/emoticon/41091/1';
+    bttvEmotes['LilZ']          = 'http://cdn.frankerfacez.com/emoticon/28136/1';
+    bttvEmotes['ZreknarF']      = 'http://cdn.frankerfacez.com/emoticon/1/1';
+    bttvEmotes['BeanieHipster'] = 'http://cdn.frankerfacez.com/emoticon/3/1';
+    bttvEmotes['ManChicken']    = 'http://cdn.frankerfacez.com/emoticon/4/1';
+    bttvEmotes['YellowFever']   = 'http://cdn.frankerfacez.com/emoticon/5/1';
+    bttvEmotes['YooHoo']        = 'http://cdn.frankerfacez.com/emoticon/6/1';
+
+    // Twitch Turbo
+    bttvEmotes['duDudu']        = 'https://static-cdn.jtvnw.net/emoticons/v1/23139/1.0';
+    bttvEmotes['KappaHD']       = 'https://static-cdn.jtvnw.net/emoticons/v1/3286/1.0';
+    bttvEmotes['MiniK']         = 'https://static-cdn.jtvnw.net/emoticons/v1/3287/1.0';
+    bttvEmotes['riPepperonis']  = 'https://static-cdn.jtvnw.net/emoticons/v1/23141/1.0';
+
+    localStorage.setItem("bttvEmotes", JSON.stringify(bttvEmotes));
 }
 
 
