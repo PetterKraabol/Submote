@@ -200,24 +200,24 @@ function loadBetterTTVemotes()
 function loadCustomEmotes(){
     // To-do: generalize bttvEmotes into customEmotes
     
-    bttvEmotes['aaaDuhface']    = 'http://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
+    bttvEmotes['MiniF']         = 'https://i.imgur.com/tFVk9jE.png';
+    bttvEmotes['aaaDuhface']    = 'https://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
 
     bttvEmotes['PepePls']       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
     bttvEmotes['SnoopPls']      = 'https://cdn.betterttv.net/emote/55a05e85cc07004a41f8b1d7/1x';
     bttvEmotes['Ditto']         = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
     bttvEmotes['FeelsOhWait']   = 'https://cdn.betterttv.net/emote/55ab96ce9406e5482db53424/1x';
-    bttvEmotes['blueHula']      = 'https://cdn.betterttv.net/emote/55adf775917af02166048acd/1x';
     bttvEmotes['ShakeItOff']    = 'https://cdn.betterttv.net/emote/55a9875be80089ed0bf297a0/1x';
 
     // FrankerFaceZ
-    bttvEmotes['CatBag']        = 'http://cdn.frankerfacez.com/emoticon/25927/1';
-    bttvEmotes['CoolCatBag']    = 'http://cdn.frankerfacez.com/emoticon/41091/1';
-    bttvEmotes['LilZ']          = 'http://cdn.frankerfacez.com/emoticon/28136/1';
-    bttvEmotes['ZreknarF']      = 'http://cdn.frankerfacez.com/emoticon/1/1';
-    bttvEmotes['BeanieHipster'] = 'http://cdn.frankerfacez.com/emoticon/3/1';
-    bttvEmotes['ManChicken']    = 'http://cdn.frankerfacez.com/emoticon/4/1';
-    bttvEmotes['YellowFever']   = 'http://cdn.frankerfacez.com/emoticon/5/1';
-    bttvEmotes['YooHoo']        = 'http://cdn.frankerfacez.com/emoticon/6/1';
+    bttvEmotes['CatBag']        = 'https://cdn.frankerfacez.com/emoticon/25927/1';
+    bttvEmotes['CoolCatBag']    = 'https://cdn.frankerfacez.com/emoticon/41091/1';
+    bttvEmotes['LilZ']          = 'https://cdn.frankerfacez.com/emoticon/28136/1';
+    bttvEmotes['ZreknarF']      = 'https://cdn.frankerfacez.com/emoticon/1/1';
+    bttvEmotes['BeanieHipster'] = 'https://cdn.frankerfacez.com/emoticon/3/1';
+    bttvEmotes['ManChicken']    = 'https://cdn.frankerfacez.com/emoticon/4/1';
+    bttvEmotes['YellowFever']   = 'https://cdn.frankerfacez.com/emoticon/5/1';
+    bttvEmotes['YooHoo']        = 'https://cdn.frankerfacez.com/emoticon/6/1';
 
     // Twitch Turbo
     bttvEmotes['duDudu']        = 'https://static-cdn.jtvnw.net/emoticons/v1/23139/1.0';
