@@ -200,7 +200,7 @@ function loadBetterTTVemotes()
 function loadCustomEmotes(){
     // To-do: generalize bttvEmotes into customEmotes
     
-    bttvEmotes['MiniF']         = 'https://i.imgur.com/tFVk9jE.png';
+    bttvEmotes['MiniF']         = 'http://i.imgur.com/tFVk9jE.png';
     bttvEmotes['aaaDuhface']    = 'https://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
 
     bttvEmotes['PepePls']       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
