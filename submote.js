@@ -9,10 +9,9 @@ var bttvEmotes  = {};           // bttvEmotes[emote] = source
 
 
 // Check if emotes are already stored locally
-if (localStorage.getItem("subEmotes") === null)
+if (localStorage.getItem("subEmotes") === null){
     loadSubEmotes();
-else
-{
+}else{
     subEmotes           = JSON.parse(localStorage.getItem("subEmotes"));
     var genDate         = Date.parse(subEmotes['generated_at']);
     var currentDate     = new Date();
@@ -26,8 +25,7 @@ else
 if (localStorage.getItem("bttvEmotes") === null){
     loadBetterTTVemotes();
     loadCustomEmotes();
-}
-else{
+}else{
     bttvEmotes = JSON.parse(localStorage.getItem("bttvEmotes"));
 
         bttvEmotes      = JSON.parse(localStorage.getItem("bttvEmotes"));
@@ -197,13 +195,15 @@ function loadBetterTTVemotes()
 /**
  * Load Custom Emotes
  */
-function loadCustomEmotes(){
+function loadCustomEmotes()
+{
     // To-do: generalize bttvEmotes into customEmotes
     
-    bttvEmotes['MiniF']         = 'http://i.imgur.com/tFVk9jE.png';
     bttvEmotes['aaaDuhface']    = 'https://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
 
     bttvEmotes['PepePls']       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
+    bttvEmotes['DogePls']       = 'https://cdn.betterttv.net/emote/55c7eb723d8fd22f20ac9cc1/1x';
+    bttvEmotes['sodaGpls']      = 'https://cdn.betterttv.net/emote/55c7d01ae9d8d91f2087ee34/1x';
     bttvEmotes['SnoopPls']      = 'https://cdn.betterttv.net/emote/55a05e85cc07004a41f8b1d7/1x';
     bttvEmotes['Ditto']         = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
     bttvEmotes['FeelsOhWait']   = 'https://cdn.betterttv.net/emote/55ab96ce9406e5482db53424/1x';
@@ -231,7 +231,7 @@ function loadCustomEmotes(){
 
 /**
  * Scan message and replace words with emotes!
- * 
+ *
  * @param  {element} ele        Message element
  * @param  {object} list        List of emotes
  * @param  {string} provider    Emote provider
@@ -268,7 +268,7 @@ function parseMessage(ele, list)
 
 /**
  * Generate emote image HTML tag.
- * 
+ *
  * @param  {int} id Emote ID
  * @return {string}    HTML img tag
  */
@@ -287,7 +287,7 @@ function generateEmoteImage(emote, source, provider)
 
 /**
  * Run selected word through a filter
- * 
+ *
  * @param  {string}     word     Selected word
  * @param  {object}     list     Emote list
  * @param  {string}     provider Emote provider
@@ -328,7 +328,7 @@ function validateFilter(word, list, provider)
 
 /**
  * In case something fails, let the user know!
- * 
+ *
  * @param  {string} message Error description
  */
 function sendError(message)
