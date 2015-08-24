@@ -2,6 +2,9 @@
 
 ##Submote v2
 
+###v2.1.1
+- Fixed expiration date for emotes
+
 ###v2.1.0
 - Using a new method to detect messages for stability improvements
 

@@ -15,6 +15,7 @@ If you are looking for the Chrome extension, [click here](https://chrome.google.
 ####To-do list
 - Fix: Random people are being given submote dev badges.
 - Support channel specific BetterTTV emotes.
+- Include callbacks in functions for better error handling.
 
 ####What's new in Submote v2?
 - Submote should now run 99% of the time!

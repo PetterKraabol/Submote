@@ -9,34 +9,30 @@ var bttvEmotes  = {};           // bttvEmotes[emote] = source
 
 
 // Check if emotes are already stored locally
-if (localStorage.getItem("subEmotes") === null){
-    loadSubEmotes();
+if (localStorage.getItem("subEmotes") === null || localStorage.getItem("bttvEmotes") === null){
+    reloadAllEmotes();
 }else{
     subEmotes           = JSON.parse(localStorage.getItem("subEmotes"));
-    var genDate         = Date.parse(subEmotes['generated_at']);
+    var genDate         = Date.parse(subEmotes.generated_at);
     var currentDate     = new Date();
-    var expirationDate  = genDate+3600*1000/2;  //30 minutes
+    var expirationDate  = new Date(genDate.getTime() + 3600*1000/2);  // 30 minutes
 
-    //Check if expired
-    if(currentDate.getTime() >= expirationDate)
-        loadSubEmotes();
+    // Check if expired
+    if(currentDate.getTime() >= expirationDate.getTime())
+        reloadAllEmotes();
 }
 
-if (localStorage.getItem("bttvEmotes") === null){
+/**
+ * Reloads the emote lists.
+ */
+function reloadAllEmotes(){
+    // Remove any remaining emotes
+    localStorage.setItem('subEmotes', null);
+    localStorage.setItem('bttvEmotes', null);
+
+    //Load all emotes
+    loadSubEmotes();
     loadBetterTTVemotes();
-    loadCustomEmotes();
-}else{
-    bttvEmotes = JSON.parse(localStorage.getItem("bttvEmotes"));
-
-        bttvEmotes      = JSON.parse(localStorage.getItem("bttvEmotes"));
-    var genDate         = bttvEmotes['generated_at'];
-    var currentDate     = new Date();
-    var expirationDate  = genDate+3600*1000/2;  //30 minutes
-
-    //Check if expired
-    if(currentDate.getTime() >= expirationDate)
-        loadBetterTTVemotes();
-
     loadCustomEmotes();
 }
 
@@ -147,20 +143,20 @@ function loadSubEmotes()
 {
     $.getJSON('https:twitchemotes.com/api_cache/v2/subscriber.json', function(data)
     {
-        $.each(data['channels'], function(channel, properties)
+        $.each(data.channels, function(channel, properties)
         {
-            $.each(properties['emotes'], function(list, emote){
-                subEmotes[emote['code']] = emote['image_id'];
+            $.each(properties.emotes, function(list, emote){
+                subEmotes[emote.code] = emote.image_id;
             });
         });
 
-        $.each(data['meta'], function(key, val){
+        $.each(data.meta, function(key, val){
             subEmotes[key] = val;
         });
     })
     .done(function()
     {
-        subEmotes['provider'] = 'twitch';
+        subEmotes.provider = 'twitch';
         localStorage.setItem("subEmotes", JSON.stringify(subEmotes));
     })
     .fail(function()
@@ -178,12 +174,12 @@ function loadBetterTTVemotes()
 {
     $.getJSON('https://cdn.betterttv.net/emotes/emotes.json', function(data){
         $.each(data, function(key, value){
-            bttvEmotes[value['regex'].replace('\\', '')] = value['url'].replace('//', 'https://');
+            bttvEmotes[value.regex.replace('\\', '')] = value.url.replace('//', 'https://');
         });
     })
     .done(function(){
-        bttvEmotes['provider'] = 'betterttv';
-        bttvEmotes['generated_at'] = new Date();
+        bttvEmotes.provider = 'betterttv';
+        bttvEmotes.generated_at = new Date();
 
         localStorage.setItem("bttvEmotes", JSON.stringify(bttvEmotes));
     })
@@ -199,31 +195,31 @@ function loadCustomEmotes()
 {
     // To-do: generalize bttvEmotes into customEmotes
     
-    bttvEmotes['aaaDuhface']    = 'https://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
+    bttvEmotes.aaaDuhface    = 'https://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
 
-    bttvEmotes['PepePls']       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
-    bttvEmotes['DogePls']       = 'https://cdn.betterttv.net/emote/55c7eb723d8fd22f20ac9cc1/1x';
-    bttvEmotes['sodaGpls']      = 'https://cdn.betterttv.net/emote/55c7d01ae9d8d91f2087ee34/1x';
-    bttvEmotes['SnoopPls']      = 'https://cdn.betterttv.net/emote/55a05e85cc07004a41f8b1d7/1x';
-    bttvEmotes['Ditto']         = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
-    bttvEmotes['FeelsOhWait']   = 'https://cdn.betterttv.net/emote/55ab96ce9406e5482db53424/1x';
-    bttvEmotes['ShakeItOff']    = 'https://cdn.betterttv.net/emote/55a9875be80089ed0bf297a0/1x';
+    bttvEmotes.PepePls       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
+    bttvEmotes.DogePls       = 'https://cdn.betterttv.net/emote/55c7eb723d8fd22f20ac9cc1/1x';
+    bttvEmotes.sodaGpls      = 'https://cdn.betterttv.net/emote/55c7d01ae9d8d91f2087ee34/1x';
+    bttvEmotes.SnoopPls      = 'https://cdn.betterttv.net/emote/55a05e85cc07004a41f8b1d7/1x';
+    bttvEmotes.Ditto         = 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/1x';
+    bttvEmotes.FeelsOhWait   = 'https://cdn.betterttv.net/emote/55ab96ce9406e5482db53424/1x';
+    bttvEmotes.ShakeItOff    = 'https://cdn.betterttv.net/emote/55a9875be80089ed0bf297a0/1x';
 
     // FrankerFaceZ
-    bttvEmotes['CatBag']        = 'https://cdn.frankerfacez.com/emoticon/25927/1';
-    bttvEmotes['CoolCatBag']    = 'https://cdn.frankerfacez.com/emoticon/41091/1';
-    bttvEmotes['LilZ']          = 'https://cdn.frankerfacez.com/emoticon/28136/1';
-    bttvEmotes['ZreknarF']      = 'https://cdn.frankerfacez.com/emoticon/1/1';
-    bttvEmotes['BeanieHipster'] = 'https://cdn.frankerfacez.com/emoticon/3/1';
-    bttvEmotes['ManChicken']    = 'https://cdn.frankerfacez.com/emoticon/4/1';
-    bttvEmotes['YellowFever']   = 'https://cdn.frankerfacez.com/emoticon/5/1';
-    bttvEmotes['YooHoo']        = 'https://cdn.frankerfacez.com/emoticon/6/1';
+    bttvEmotes.CatBag        = 'https://cdn.frankerfacez.com/emoticon/25927/1';
+    bttvEmotes.CoolCatBag    = 'https://cdn.frankerfacez.com/emoticon/41091/1';
+    bttvEmotes.LilZ          = 'https://cdn.frankerfacez.com/emoticon/28136/1';
+    bttvEmotes.ZreknarF      = 'https://cdn.frankerfacez.com/emoticon/1/1';
+    bttvEmotes.BeanieHipster = 'https://cdn.frankerfacez.com/emoticon/3/1';
+    bttvEmotes.ManChicken    = 'https://cdn.frankerfacez.com/emoticon/4/1';
+    bttvEmotes.YellowFever   = 'https://cdn.frankerfacez.com/emoticon/5/1';
+    bttvEmotes.YooHoo        = 'https://cdn.frankerfacez.com/emoticon/6/1';
 
     // Twitch Turbo
-    bttvEmotes['duDudu']        = 'https://static-cdn.jtvnw.net/emoticons/v1/23139/1.0';
-    bttvEmotes['KappaHD']       = 'https://static-cdn.jtvnw.net/emoticons/v1/3286/1.0';
-    bttvEmotes['MiniK']         = 'https://static-cdn.jtvnw.net/emoticons/v1/3287/1.0';
-    bttvEmotes['riPepperonis']  = 'https://static-cdn.jtvnw.net/emoticons/v1/23141/1.0';
+    bttvEmotes.duDudu        = 'https://static-cdn.jtvnw.net/emoticons/v1/23139/1.0';
+    bttvEmotes.KappaHD       = 'https://static-cdn.jtvnw.net/emoticons/v1/3286/1.0';
+    bttvEmotes.MiniK         = 'https://static-cdn.jtvnw.net/emoticons/v1/3287/1.0';
+    bttvEmotes.riPepperonis  = 'https://static-cdn.jtvnw.net/emoticons/v1/23141/1.0';
 
     localStorage.setItem("bttvEmotes", JSON.stringify(bttvEmotes));
 }
@@ -242,7 +238,7 @@ function parseMessage(ele, list)
     var split       = msg.replace(/(<([^>]+)>)/ig,'').trim().split(' ');
         split       = $.grep(split,function(n){ return(n) });
     var words       = [];
-    var provider    = list['provider'];
+    var provider    = list.provider;
     var regex;
     var word;
 
@@ -277,10 +273,8 @@ function generateEmoteImage(emote, source, provider)
     switch(provider){
         case 'twitch':
             return '<img class="emoticon ttv-emo-'+source+'" src="http://static-cdn.jtvnw.net/emoticons/v1/'+source+'/1.0" srcset="http://static-cdn.jtvnw.net/emoticons/v1/'+source+'/2.0 2x" data-id="'+source+'" data-regex="'+emote+'" alt="'+emote+'" original-title>';
-            break;
         case 'betterttv':
             return '<img class="emoticon tooltip" src="'+source+'" data-regex="'+emote+'" original-title="'+emote+'">';
-            break;
     }
 }
 
