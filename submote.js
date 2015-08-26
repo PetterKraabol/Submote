@@ -12,14 +12,15 @@ var bttvEmotes  = {};           // bttvEmotes[emote] = source
 if (localStorage.getItem("subEmotes") === null || localStorage.getItem("bttvEmotes") === null){
     reloadAllEmotes();
 }else{
-    subEmotes           = JSON.parse(localStorage.getItem("subEmotes"));
-    var genDate         = Date.parse(subEmotes.generated_at);
-    var currentDate     = new Date();
-    var expirationDate  = new Date(genDate.getTime() + 3600*1000/2);  // 30 minutes
+    reloadAllEmotes();
+    //subEmotes           = JSON.parse(localStorage.getItem("subEmotes"));
+    //var genDate         = Date.parse(subEmotes.generated_at);
+    //var currentDate     = new Date();
+    //var expirationDate  = new Date(genDate.getTime() + 3600*1000/2);  // 30 minutes
 
-    // Check if expired
-    if(currentDate.getTime() >= expirationDate.getTime())
-        reloadAllEmotes();
+    //// Check if expired
+    //if(currentDate.getTime() >= expirationDate.getTime())
+    //    reloadAllEmotes();
 }
 
 /**
@@ -141,7 +142,7 @@ function newMessage(message){
  */
 function loadSubEmotes()
 {
-    $.getJSON('https:twitchemotes.com/api_cache/v2/subscriber.json', function(data)
+    $.getJSON('https://twitchemotes.com/api_cache/v2/subscriber.json', function(data)
     {
         $.each(data.channels, function(channel, properties)
         {
