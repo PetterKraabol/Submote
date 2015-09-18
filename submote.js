@@ -7,6 +7,13 @@ var subMotes    = {};           // subMotes[emote] = source
 var subEmotes   = {};           // subEmotes[emote] = id
 var bttvEmotes  = {};           // bttvEmotes[emote] = source
 
+// Add developer badge to dev channels
+if(window.location.href.indexOf("zarlach") > -1) {
+    $('.info .title').css({
+        'text-shadow': '#6441A5 0px 0px 7px',
+        'color': '#6441A5',
+    });
+}
 
 // Check if emotes are already stored locally
 if (localStorage.getItem("subEmotes") === null || localStorage.getItem("bttvEmotes") === null){
