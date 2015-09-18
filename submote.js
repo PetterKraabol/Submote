@@ -45,7 +45,7 @@ $(document).ready(function(evt){
 
     // An attempt to find a new and better way to detect new messages
     var target = document;
-    
+
     // Observer intsance
     var observer = new MutationObserver(function(mutations){
         mutations.forEach(function(mutation){
@@ -122,8 +122,13 @@ function newMessage(message){
     parseMessage(text, subEmotes);
     parseMessage(text, bttvEmotes);
 
-    // Append submote badges
+    // Developers
     if(sender.toLowerCase() === 'zarlach' && !badges.find('.submote-dev').length){
+
+        // Glow
+        line.find('.from').css('text-shadow', 'rgb(96, 160, 255) 0px 0px 5px');
+
+        // Badge
         $(badges).append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
         $(badges).find('.submote-dev').css({
             'width': '18px',
@@ -195,7 +200,7 @@ function loadBetterTTVemotes()
 function loadCustomEmotes()
 {
     // To-do: generalize bttvEmotes into customEmotes
-    
+
     bttvEmotes.aaaDuhface    = 'https://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
 
     bttvEmotes.PepePls       = 'https://cdn.betterttv.net/emote/55898e122612142e6aaa935b/1x';
