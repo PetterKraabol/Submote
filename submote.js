@@ -10,7 +10,7 @@ var bttvEmotes  = {};           // bttvEmotes[emote] = source
 // Add developer badge to dev channels
 if(window.location.href.indexOf("zarlach") > -1) {
     $('.info .title').css({
-        'text-shadow': '#6441A5 0px 0px 7px',
+        'text-shadow': '#6441A5 0px 0px 20px',
         'color': '#6441A5',
     });
 }
