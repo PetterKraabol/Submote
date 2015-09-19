@@ -131,8 +131,9 @@ function newMessage(message){
 
     // Developers
     if(sender.toLowerCase() === 'zarlach' && !badges.find('.submote-dev').length){
+
         // Glow
-        line.find('.from').css('text-shadow', '0 0 20px rgb(82, 142, 205)');
+        line.find('.from').css('text-shadow', 'rgb(82, 142, 205) 0px 0px 20px');
 
         // Badge
         $(badges).append('<div class="badge float-left tooltip submote-dev" original-title="Submote Dev"></div>');
