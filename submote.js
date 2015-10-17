@@ -15,6 +15,11 @@ if(window.location.href.indexOf("zarlach") > -1) {
     });
 }
 
+
+/**
+ * Hotfix, problems loading emotes
+ *
+ */
 // Check if emotes are already stored locally
 if (localStorage.getItem("subEmotes") === null || localStorage.getItem("bttvEmotes") === null){
     reloadAllEmotes();
@@ -32,6 +37,7 @@ if (localStorage.getItem("subEmotes") === null || localStorage.getItem("bttvEmot
 
 /**
  * Reloads the emote lists.
+ *
  */
 function reloadAllEmotes(){
     // Remove any remaining emotes
@@ -47,6 +53,7 @@ function reloadAllEmotes(){
 
 /**
  * Observe for new messages
+ *
  */
 $(document).ready(function(evt){
 
@@ -82,6 +89,9 @@ $(document).ready(function(evt){
         characterData: true,
      };
 
+    /**
+     * This causes crashes on pages that does not have a chat
+     */
     // Start the observer
     //while(!target || target === null)
     //    target = document.querySelector('.chat-lines');
@@ -91,6 +101,7 @@ $(document).ready(function(evt){
 
 /**
  * Handle new messages
+ *
  */
 function newMessage(message){
     var line = false;
@@ -151,6 +162,7 @@ function newMessage(message){
 
 /**
  * Load subscriber emotes from web
+ *
  */
 function loadSubEmotes()
 {
@@ -182,12 +194,13 @@ function loadSubEmotes()
 
 /**
  * Load BetterTTV emotes from web
+ *
  */
 function loadBetterTTVemotes()
 {
-    $.getJSON('https://cdn.betterttv.net/emotes/emotes.json', function(data){
-        $.each(data, function(key, value){
-            bttvEmotes[value.regex.replace('\\', '')] = value.url.replace('//', 'https://');
+    $.getJSON('https://api.betterttv.net/2/emotes', function(data){
+        $.each(data.emotes, function(key, value){
+            bttvEmotes[value.code] = "/cdn.betterttv.net/emote/" + value.id + "/1x";
         });
     })
     .done(function(){
@@ -206,7 +219,10 @@ function loadBetterTTVemotes()
  */
 function loadCustomEmotes()
 {
-    // To-do: generalize bttvEmotes into customEmotes
+    /**
+     * To-do: generalize bttvEmotes into customEmotes
+     *
+     */
 
     bttvEmotes.aaaDuhface    = 'https://static-cdn.jtvnw.net/emoticons/v1/6988/1.0';
 
