@@ -200,7 +200,7 @@ function loadBetterTTVemotes()
 {
     $.getJSON('https://api.betterttv.net/2/emotes', function(data){
         $.each(data.emotes, function(key, value){
-            bttvEmotes[value.code] = "/cdn.betterttv.net/emote/" + value.id + "/1x";
+            bttvEmotes[value.code] = "https://cdn.betterttv.net/emote/" + value.id + "/1x";
         });
     })
     .done(function(){
