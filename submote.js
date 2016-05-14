@@ -293,7 +293,7 @@ function generateEmoteImage(emote, source, provider)
 {
     switch(provider){
         case 'twitch':
-            return '<img class="emoticon ttv-emo-'+source+'" src="http://static-cdn.jtvnw.net/emoticons/v1/'+source+'/1.0" srcset="http://static-cdn.jtvnw.net/emoticons/v1/'+source+'/2.0 2x" data-id="'+source+'" data-regex="'+emote+'" alt="'+emote+'" original-title>';
+            return '<img class="emoticon ttv-emo-'+source+'" src="https://static-cdn.jtvnw.net/emoticons/v1/'+source+'/1.0" srcset="https://static-cdn.jtvnw.net/emoticons/v1/'+source+'/2.0 2x" data-id="'+source+'" data-regex="'+emote+'" alt="'+emote+'" original-title>';
         case 'betterttv':
             return '<img class="emoticon tooltip" src="'+source+'" data-regex="'+emote+'" original-title="'+emote+'">';
     }
