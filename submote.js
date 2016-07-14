@@ -149,6 +149,10 @@ function newMessage(message){
         });
     }
 
+    if (sender.toLowerCase() === 'vopo70') {
+        line.find('.from').css('text-shadow', 'rgb(82, 142, 205) 0px 0px 20px');
+    }
+
     return true;
 }
 
